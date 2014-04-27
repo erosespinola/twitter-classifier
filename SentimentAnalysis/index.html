@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+	<head>
+    	<meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    	<title>Twitter Sentiment Analyser</title>
+    	<link rel="stylesheet" href="css/foundation.css" />
+    	<script src="js/vendor/modernizr.js"></script>
+  	</head>
+
+<body>
+	<nav class="top-bar" data-topbar>
+    	<ul class="title-area">
+      		<li class="name">
+        		<h1><a href="#">Twitter Sentiment Analyser</a></h1>
+      		</li>
+    	</ul>
+  	</nav>
+
+    <form>
+  		<div class="row collapse">
+    		<div class="small-3 large-2 columns">
+      			<span class="prefix" style="margin-top: 50px;">@</span>
+    		</div>
+    		<div class="small-9 large-10 columns">
+      			<input type="text" id="account" placeholder="Enter a Twitter account" style="margin-top: 50px;"></input>
+    		</div>
+  		</div>
+	</form>
+
+	<div class="row">
+  		<div class="small-2 large-4 columns"><pre> </pre></div>
+  		<div class="small-4 large-4 columns">
+  			<a id="submit" class="button expand" onclick="sendReq();">Analyze</a>
+  		</div>
+  		<div class="small-6 large-4 columns"><pre> </pre></div>
+	</div>
+
+	<script type="text/javascript">
+		function sendReq() {
+			var user = document.getElementById("account").value;
+			if (user == "") {
+				alert("A twitter user is needed");
+				return;
+			}
+			var url = "127.0.0.1:9000?user=" + user;
+			$.get(url, function(data) {
+				$(".result").html(data);
+				alert("Load was performed.");
+				console.log(data);
+			});
+		}
+	</script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+    	$(document).foundation();
+    </script>
+    
+</body>
+</html>
